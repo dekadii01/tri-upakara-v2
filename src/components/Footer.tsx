@@ -1,10 +1,17 @@
-import { Flower2, Mail, Phone, MapPin, Instagram, Facebook } from 'lucide-react';
+import {
+  Flower2,
+  Mail,
+  Phone,
+  MapPin,
+  Instagram,
+  Facebook,
+} from "lucide-react";
 
 export function Footer() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -22,7 +29,9 @@ export function Footer() {
               "Teknologi boleh berubah, tapi yadnya tetap suci."
             </p>
             <p className="text-sm opacity-75">
-              Platform digital yang menghubungkan umat Hindu Bali dengan pengrajin lokal untuk memenuhi kebutuhan upakara secara mudah, cepat, dan tetap menjaga kesucian tradisi.
+              Platform digital yang menghubungkan umat Hindu Bali dengan
+              pengrajin lokal untuk memenuhi kebutuhan upakara secara mudah,
+              cepat, dan tetap menjaga kesucian tradisi.
             </p>
           </div>
 
@@ -31,27 +40,42 @@ export function Footer() {
             <h4 className="font-playfair mb-4">Tautan Cepat</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button onClick={() => scrollToSection('why-choose')} className="hover:text-[#E6B980] transition-colors">
+                <button
+                  onClick={() => scrollToSection("why-choose")}
+                  className="hover:text-[#E6B980] transition-colors"
+                >
                   Keunggulan
                 </button>
               </li>
               <li>
-                <button onClick={() => scrollToSection('artisans')} className="hover:text-[#E6B980] transition-colors">
+                <button
+                  onClick={() => scrollToSection("artisans")}
+                  className="hover:text-[#E6B980] transition-colors"
+                >
                   Mitra Kami
                 </button>
               </li>
               <li>
-                <button onClick={() => scrollToSection('products')} className="hover:text-[#E6B980] transition-colors">
+                <button
+                  onClick={() => scrollToSection("products")}
+                  className="hover:text-[#E6B980] transition-colors"
+                >
                   Produk
                 </button>
               </li>
               <li>
-                <button onClick={() => scrollToSection('subscription')} className="hover:text-[#E6B980] transition-colors">
+                <button
+                  onClick={() => scrollToSection("subscription")}
+                  className="hover:text-[#E6B980] transition-colors"
+                >
                   Paket Langganan
                 </button>
               </li>
               <li>
-                <button onClick={() => scrollToSection('education')} className="hover:text-[#E6B980] transition-colors">
+                <button
+                  onClick={() => scrollToSection("education")}
+                  className="hover:text-[#E6B980] transition-colors"
+                >
                   Edukasi Budaya
                 </button>
               </li>
@@ -64,7 +88,10 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-1 flex-shrink-0" />
-                <span>Jl. Raya Ubud, Gianyar, Bali 80571</span>
+                <span>
+                  Jl. Tukad Badung No.135, Renon, Denpasar Selatan, Kota
+                  Denpasar, Bali 80226
+                </span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 flex-shrink-0" />
@@ -72,7 +99,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <span>info@triupakara.id</span>
+                <span>tri.upakara@gmail.com</span>
               </li>
             </ul>
             <div className="flex gap-3 mt-4">

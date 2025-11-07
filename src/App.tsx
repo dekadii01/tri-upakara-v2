@@ -452,7 +452,10 @@ function App() {
                         {product.category}
                       </Badge>
                     </div>
-                    <h3 className="font-playfair text-xl text-[#8C6A43] mb-2">
+                    <h3
+                      onClick={() => setSelectedProduct(product)}
+                      className="font-playfair text-xl text-[#8C6A43] mb-2 cursor-pointer"
+                    >
                       {product.name}
                     </h3>
                     <p className="text-sm text-[#2d1810] opacity-75 mb-4 flex-1">
@@ -460,7 +463,10 @@ function App() {
                     </p>
                     <div className="flex items-center justify-between">
                       <span className="text-[#8C6A43]">{product.price}</span>
-                      <ArrowRight className="h-5 w-5 text-[#8C6A43] group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight
+                        onClick={() => setSelectedProduct(product)}
+                        className="h-5 w-5 text-[#8C6A43] group-hover:translate-x-1 transition-transform cursor-pointer"
+                      />
                     </div>
                   </div>
                 </Card>
