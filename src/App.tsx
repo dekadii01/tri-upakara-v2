@@ -579,7 +579,7 @@ function App() {
                     onClick={() => {
                       const message = `Halo, saya tertarik dengan Paket Langganan ${plan.name} (${plan.price}${plan.period}). Mohon informasi lebih lanjut.`;
                       window.open(
-                        `https://wa.me/6281234567890?text=${encodeURIComponent(
+                        `https://wa.me/6282340202905?text=${encodeURIComponent(
                           message
                         )}`,
                         "_blank"

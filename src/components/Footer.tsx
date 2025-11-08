@@ -6,6 +6,7 @@ import {
   Instagram,
   Facebook,
 } from "lucide-react";
+import LogoTriUpakara from "../assets/img/logo-triupakara.png";
 
 export function Footer() {
   const scrollToSection = (id: string) => {
@@ -22,8 +23,9 @@ export function Footer() {
           {/* Logo & Quote */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <Flower2 className="h-8 w-8" />
-              <span className="font-playfair text-xl">Tri Upakara</span>
+              {/* <Flower2 className="h-8 w-8" />
+              <span className="font-playfair text-xl">Tri Upakara</span> */}
+              <img src={LogoTriUpakara} width={80} alt="" />
             </div>
             <p className="text-sm opacity-90 italic mb-4">
               "Teknologi boleh berubah, tapi yadnya tetap suci."
