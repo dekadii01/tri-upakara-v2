@@ -23,9 +23,9 @@ import {
   Users,
   BookOpen,
   ArrowRight,
+  ArrowUpRight,
 } from "lucide-react";
 
-// Product data
 const products = [
   {
     id: "canang-sari",
@@ -97,7 +97,6 @@ const products = [
   },
 ];
 
-// Artisan data
 const artisans = [
   {
     id: 1,
@@ -128,7 +127,6 @@ const artisans = [
   },
 ];
 
-// Educational content
 const educationalContent = [
   {
     title: "Canang Sari",
@@ -153,7 +151,6 @@ const educationalContent = [
   },
 ];
 
-// Testimonials
 const testimonials = [
   {
     name: "I Putu Darma",
@@ -178,10 +175,200 @@ const testimonials = [
   },
 ];
 
+// Typography styles injected globally
+const typographyStyles = `
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --ink: #0f0d0b;
+    --ink-muted: #5a4e42;
+    --paper: #f5f0e8;
+    --paper-warm: #ede7d9;
+    --accent: #b85c2a;
+    --accent-light: #d4896a;
+    --rule: #c8b89a;
+    --white: #fdfaf6;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'Syne', sans-serif;
+  }
+
+  .font-display { font-family: 'DM Serif Display', serif; }
+  .font-serif { font-family: 'Instrument Serif', serif; }
+  .font-sans { font-family: 'Syne', sans-serif; }
+
+  /* Typographic rule lines */
+  .rule-top { border-top: 1.5px solid var(--rule); }
+  .rule-bottom { border-bottom: 1.5px solid var(--rule); }
+  .rule-left { border-left: 4px solid var(--accent); }
+
+  /* Running number/label style */
+  .overline {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Giant pull quote style */
+  .display-xl {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+
+  .display-lg {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .display-md {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .body-serif {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+  }
+
+  .caption {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* Editorial card hover */
+  .editorial-card {
+    background: var(--white);
+    border: 1.5px solid var(--rule);
+    transition: all 0.3s ease;
+  }
+  .editorial-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0px var(--accent);
+  }
+
+  /* Outlined button */
+  .btn-ink {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .btn-ink:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .btn-accent {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--accent);
+    background: var(--accent);
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .btn-accent:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  /* Column grid */
+  .col-rule {
+    border-right: 1.5px solid var(--rule);
+  }
+
+  /* Marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+    display: flex;
+  }
+
+  /* Image overlay on hover */
+  .img-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+  .img-overlay img {
+    transition: transform 0.6s ease;
+  }
+  .img-overlay:hover img {
+    transform: scale(1.05);
+  }
+  .img-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,13,11,0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .img-overlay:hover::after {
+    opacity: 1;
+  }
+
+  /* Drop cap */
+  .drop-cap::first-letter {
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    line-height: 0.8;
+    float: left;
+    margin-right: 0.1em;
+    margin-top: 0.05em;
+    color: var(--accent);
+  }
+
+  /* Section counter */
+  .section-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    color: var(--rule);
+  }
+`;
+
 function App() {
-  const [selectedProduct, setSelectedProduct] = useState<
-    (typeof products)[0] | null
-  >(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -191,6 +378,7 @@ function App() {
   if (selectedProduct) {
     return (
       <>
+        <style>{typographyStyles}</style>
         <Header />
         <ProductDetail
           product={selectedProduct}
@@ -201,560 +389,1009 @@ function App() {
     );
   }
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const whatsappOrder = (msg) => {
+    window.open(
+      `https://wa.me/6282340202905?text=${encodeURIComponent(msg)}`,
+      "_blank",
+    );
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF9F3]">
-      <Header />
+    <>
+      <style>{typographyStyles}</style>
+      <div style={{ background: "var(--paper)", minHeight: "100vh" }}>
+        <Header />
 
-      {/* Hero Section */}
-      <section
-        id="hero"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-      >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 poleng-pattern opacity-30" />
-
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1544486383-5a7dd6a60932?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxCYWxpbmVzZSUyMG9mZmVyaW5ncyUyMGNhbmFuZ3xlbnwxfHx8fDE3NjE0NzUzNDB8MA&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Hero Background"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FFF9F3] via-transparent to-[#FFF9F3]" />
-        </div>
-
-        <div className="container mx-auto px-4 z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+        {/* ── HERO ── */}
+        <section
+          id="hero"
+          style={{
+            paddingTop: "7rem",
+            paddingBottom: "4rem",
+            borderBottom: "1.5px solid var(--rule)",
+          }}
+        >
+          <div
+            style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
           >
-            <h1 className="font-playfair text-5xl md:text-7xl text-[#8C6A43] mb-6">
-              Tradisi Suci, Kini Lebih Dekat
-            </h1>
-            <h2 className="font-playfair text-3xl md:text-4xl text-[#D8C49A] mb-8">
-              Tri Upakara
-            </h2>
-            <p className="text-lg md:text-xl text-[#2d1810] opacity-75 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Platform digital yang menghubungkan umat Hindu Bali dengan
-              pengrajin lokal terpercaya untuk memenuhi kebutuhan upakara dengan
-              mudah, cepat, dan tetap menjaga kesucian tradisi.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => scrollToSection("products")}
-                className="bg-[#8C6A43] hover:bg-[#6d5335] text-white px-8 py-6 rounded-full shadow-lg text-lg"
-              >
-                Pesan Sekarang
-              </Button>
-              <Button
-                onClick={() => scrollToSection("artisans")}
-                variant="outline"
-                className="border-2 border-[#8C6A43] text-[#8C6A43] hover:bg-[#8C6A43] hover:text-white px-8 py-6 rounded-full text-lg"
-              >
-                Lihat Mitra Kami
-              </Button>
+            {/* ── META BAR ── */}
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-12 pb-4 border-b border-(--rule) text-[10px] tracking-[0.2em] uppercase font-semibold">
+              <span className="overline">Edisi Khusus · 2025</span>
+              <span className="overline">Upakara Tradisional Bali</span>
+              <span className="overline">Est. Sejak Zaman Dahulu</span>
             </div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* Why Choose Us Section */}
-      <section id="why-choose" className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="font-playfair text-4xl md:text-5xl text-[#8C6A43] mb-4">
-              Mengapa Memilih Tri Upakara?
-            </h2>
-            <p className="text-[#2d1810] opacity-75 max-w-2xl mx-auto">
-              Kami berkomitmen menjaga kesucian tradisi sambil memberikan
-              kemudahan modern
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Sparkles,
-                title: "Asli dari Pengrajin Lokal",
-                description:
-                  "Dibuat oleh pengrajin berpengalaman yang memahami tradisi.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Suci & Terjaga",
-                description:
-                  "Dikerjakan dengan mantra suci sesuai ajaran Hindu.",
-              },
-              {
-                icon: Zap,
-                title: "Mudah & Cepat",
-                description:
-                  "Pesan via WhatsApp, pengiriman cepat ke lokasi Anda.",
-              },
-              {
-                icon: Leaf,
-                title: "Ramah Lingkungan",
-                description: "Bahan alami, mendukung keberlanjutan tradisi.",
-              },
-            ].map((item, index) => (
+            {/* Giant headline grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-end">
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 40 }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
               >
-                <Card className="p-6 text-center hover:shadow-xl transition-all duration-300 border-[#D8C49A] rounded-2xl h-full bg-gradient-to-b from-white to-[#FFF9F3] flex items-center">
-                  <div className="flex items-center justify-center w-16 h-16 bg-[#E6B980]/20 rounded-full mb-4">
-                    <item.icon className="h-8 w-8 text-[#8C6A43] text-center" />
-                  </div>
-                  <h3 className="font-playfair text-xl text-[#8C6A43] mb-3">
+                <p className="overline" style={{ marginBottom: "1.5rem" }}>
+                  Platform Upakara Digital
+                </p>
+                <h1 className="display-xl" style={{ color: "var(--ink)" }}>
+                  Tri
+                  <br />
+                  <em style={{ color: "var(--accent)", fontStyle: "italic" }}>
+                    Upakara
+                  </em>
+                </h1>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 30 }}
+                transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+                style={{ paddingBottom: "0.5rem" }}
+              >
+                <div
+                  className="rule-left"
+                  style={{ paddingLeft: "1.5rem", marginBottom: "2rem" }}
+                >
+                  <p className="body-serif">
+                    Platform digital yang menghubungkan umat Hindu Bali dengan
+                    pengrajin lokal terpercaya. Memenuhi kebutuhan upakara
+                    dengan mudah, cepat, dan tetap menjaga kesucian tradisi
+                    leluhur.
+                  </p>
+                </div>
+                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                  <button
+                    className="btn-accent"
+                    onClick={() => scrollToSection("products")}
+                  >
+                    Pesan Sekarang
+                  </button>
+                  <button
+                    className="btn-ink"
+                    onClick={() => scrollToSection("artisans")}
+                  >
+                    Lihat Mitra Kami
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Hero image strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-3 md:h-[360px]"
+            >
+              {[
+                "https://images.unsplash.com/photo-1544486383-5a7dd6a60932?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+                "https://images.unsplash.com/photo-1745739193791-c2d4153f5e9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
+                "https://images.unsplash.com/photo-1712129461255-c5386eafb0e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
+              ].map((src, i) => (
+                <div
+                  key={i}
+                  className="img-overlay"
+                  style={{ borderRadius: "2px", overflow: "hidden" }}
+                >
+                  <img
+                    src={src}
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                  {i === 0 && (
+                    <div className="absolute bottom-6 left-6">
+                      <span className="bg-[var(--accent)] text-white text-[10px] font-bold tracking-[0.15em] uppercase px-3 py-1">
+                        Tradisi · Suci · Otentik
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── MARQUEE BAND ── */}
+        <div
+          style={{
+            background: "var(--ink)",
+            padding: "0.9rem 0",
+            overflow: "hidden",
+          }}
+        >
+          <div className="marquee-track">
+            {Array(8)
+              .fill(
+                "Upakara Suci · Pengrajin Lokal · Tradisi Bali · Canang Sari · Banten Pejati · Rayunan ·",
+              )
+              .map((t, i) => (
+                <span
+                  key={i}
+                  style={{
+                    fontFamily: "'Syne', sans-serif",
+                    fontSize: "0.7rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "var(--paper-warm)",
+                    marginRight: "3rem",
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+          </div>
+        </div>
+
+        {/* ── WHY CHOOSE US ── */}
+        <section
+          id="why-choose"
+          style={{ padding: "6rem 0", background: "var(--white)" }}
+        >
+          <div
+            style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 items-start pb-16 mb-16 border-b border-neutral-200">
+              {/* Title */}
+              <div>
+                <span className="section-num">§ 01</span>
+                <h2 className="display-md mt-2 leading-tight">
+                  Mengapa <br />
+                  <em className="italic text-accent">Memilih</em> <br />
+                  Kami?
+                </h2>
+              </div>
+
+              {/* Description */}
+              <p className="md:col-span-2 body-serif drop-cap text-neutral-700 leading-relaxed">
+                Kami berkomitmen menjaga kesucian tradisi Bali sambil memberikan
+                kemudahan modern kepada setiap umat. Setiap produk dikerjakan
+                dengan niat suci, bahan terpilih, dan penuh penghayatan terhadap
+                nilai-nilai leluhur yang telah diwariskan turun-temurun.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-neutral-200">
+              {[
+                {
+                  icon: Sparkles,
+                  num: "01",
+                  title: "Asli dari Pengrajin Lokal",
+                  desc: "Dibuat oleh pengrajin berpengalaman yang memahami tradisi.",
+                },
+                {
+                  icon: ShieldCheck,
+                  num: "02",
+                  title: "Suci & Terjaga",
+                  desc: "Dikerjakan dengan mantra suci sesuai ajaran Hindu.",
+                },
+                {
+                  icon: Zap,
+                  num: "03",
+                  title: "Mudah & Cepat",
+                  desc: "Pesan via WhatsApp, pengiriman cepat ke lokasi Anda.",
+                },
+                {
+                  icon: Leaf,
+                  num: "04",
+                  title: "Ramah Lingkungan",
+                  desc: "Bahan alami, mendukung keberlanjutan tradisi.",
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  style={{
+                    padding: "2rem",
+                    borderRight: index < 3 ? "1.5px solid var(--rule)" : "none",
+                  }}
+                >
+                  <span
+                    className="overline"
+                    style={{ display: "block", marginBottom: "1.5rem" }}
+                  >
+                    {item.num}
+                  </span>
+                  <item.icon
+                    size={24}
+                    style={{ color: "var(--accent)", marginBottom: "1rem" }}
+                  />
+                  <h3
+                    style={{
+                      fontFamily: "'DM Serif Display', serif",
+                      fontSize: "1.2rem",
+                      color: "var(--ink)",
+                      marginBottom: "0.75rem",
+                      lineHeight: 1.2,
+                    }}
+                  >
                     {item.title}
                   </h3>
-                  <p className="text-sm text-[#2d1810] opacity-75">
-                    {item.description}
+                  <p
+                    style={{
+                      fontFamily: "'Syne', sans-serif",
+                      fontSize: "0.85rem",
+                      color: "var(--ink-muted)",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {item.desc}
                   </p>
-                </Card>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Artisan Showcase */}
-      <section id="artisans" className="py-24 bg-[#FFF9F3]">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+        {/* ── ARTISANS ── */}
+        <section
+          id="artisans"
+          style={{ padding: "6rem 0", background: "var(--paper)" }}
+        >
+          <div
+            style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
           >
-            <h2 className="font-playfair text-4xl md:text-5xl text-[#8C6A43] mb-4">
-              Mitra Pengrajin Kami
-            </h2>
-            <p className="text-[#2d1810] opacity-75 max-w-2xl mx-auto">
-              Bertemu dengan para pengrajin berpengalaman yang menjaga tradisi
-              dengan sepenuh hati
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {artisans.map((artisan, index) => (
-              <motion.div
-                key={artisan.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                marginBottom: "3rem",
+                paddingBottom: "1.5rem",
+                borderBottom: "1.5px solid var(--rule)",
+              }}
+            >
+              <div>
+                <span className="section-num">§ 02</span>
+                <h2 className="display-md" style={{ marginTop: "0.5rem" }}>
+                  Mitra Pengrajin
+                  <br />
+                  <em style={{ fontStyle: "italic", color: "var(--accent)" }}>
+                    Kami
+                  </em>
+                </h2>
+              </div>
+              <p
+                style={{
+                  fontFamily: "'Instrument Serif', serif",
+                  fontSize: "1rem",
+                  color: "var(--ink-muted)",
+                  maxWidth: "320px",
+                  textAlign: "right",
+                  lineHeight: 1.6,
+                }}
               >
-                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-[#D8C49A] rounded-2xl">
+                Bertemu dengan para pengrajin berpengalaman yang menjaga tradisi
+                dengan sepenuh hati.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {artisans.map((artisan, index) => (
+                <motion.div
+                  key={artisan.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group border border-neutral-200 bg-white overflow-hidden hover:shadow-lg transition-all duration-300"
+                >
+                  {/* Image */}
                   <div className="relative h-64 overflow-hidden">
-                    <ImageWithFallback
+                    <img
                       src={artisan.image}
                       alt={artisan.name}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-4 right-4">
-                      <Badge className="bg-[#8C6A43] text-white">
-                        {artisan.experience}
-                      </Badge>
-                    </div>
                   </div>
-                  <div className="p-6 bg-white">
-                    <h3 className="font-playfair text-xl text-[#8C6A43] mb-2">
-                      {artisan.name}
-                    </h3>
-                    <p className="text-sm text-[#2d1810] opacity-60 mb-2">
+
+                  {/* Content */}
+                  <div className="p-6 flex flex-col">
+                    {/* Title */}
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="font-serif text-xl text-neutral-900 leading-tight">
+                        {artisan.name}
+                      </h3>
+                      <span className="overline text-accent">
+                        {artisan.experience}
+                      </span>
+                    </div>
+
+                    {/* Location */}
+                    <p className="text-xs text-neutral-500 mb-1">
                       {artisan.location}
                     </p>
-                    <p className="text-[#2d1810] mb-4">{artisan.specialty}</p>
-                    <Button
+
+                    {/* Specialty */}
+                    <p className="text-sm text-neutral-600 mb-5 leading-relaxed font-serif">
+                      {artisan.specialty}
+                    </p>
+
+                    {/* Button */}
+                    <button
                       onClick={() => scrollToSection("products")}
-                      variant="outline"
-                      className="w-full border-[#8C6A43] text-[#8C6A43] hover:bg-[#8C6A43] hover:text-white rounded-full"
+                      className="mt-auto w-full border border-neutral-900 text-neutral-900 text-xs font-semibold tracking-widest uppercase py-3 transition-all duration-200 hover:bg-neutral-900 hover:text-white"
                     >
-                      Lihat Produk
-                    </Button>
+                      Lihat Produk →
+                    </button>
                   </div>
-                </Card>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Product Categories */}
-      <section id="products" className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+        {/* ── PRODUCTS ── */}
+        <section
+          id="products"
+          style={{ padding: "6rem 0", background: "var(--ink)" }}
+        >
+          <div
+            style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
           >
-            <h2 className="font-playfair text-4xl md:text-5xl text-[#8C6A43] mb-4">
-              Kategori Produk
-            </h2>
-            <p className="text-[#2d1810] opacity-75 max-w-2xl mx-auto">
-              Pilihan lengkap upakara untuk berbagai kebutuhan upacara Anda
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                marginBottom: "3rem",
+                paddingBottom: "1.5rem",
+                borderBottom: "1.5px solid rgba(200,184,154,0.3)",
+              }}
+            >
+              <div>
+                <span
+                  className="section-num"
+                  style={{ color: "rgba(200,184,154,0.6)" }}
+                >
+                  § 03
+                </span>
+                <h2
+                  className="display-md"
+                  style={{ marginTop: "0.5rem", color: "var(--paper)" }}
+                >
+                  Kategori
+                  <br />
+                  <em
+                    style={{
+                      fontStyle: "italic",
+                      color: "var(--accent-light)",
+                    }}
+                  >
+                    Produk
+                  </em>
+                </h2>
+              </div>
+              <p
+                style={{
+                  fontFamily: "'Instrument Serif', serif",
+                  fontSize: "1rem",
+                  color: "var(--rule)",
+                  maxWidth: "300px",
+                  textAlign: "right",
+                  lineHeight: 1.6,
+                }}
               >
-                <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-[#D8C49A] rounded-2xl h-full flex flex-col">
-                  <div className="relative h-56 overflow-hidden">
-                    <ImageWithFallback
+                Pilihan lengkap upakara untuk berbagai kebutuhan upacara Anda.
+              </p>
+            </div>
+
+            <div
+              className="grid grid-cols-1 md:grid-cols-2 gap-px"
+              style={{
+                background: "rgba(200,184,154,0.2)",
+              }}
+            >
+              {products.map((product, index) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="grid grid-cols-1 sm:grid-cols-2"
+                  style={{
+                    background: "var(--ink)",
+                    padding: "2.5rem",
+                    gap: "2rem",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    transition: "background 0.2s",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = "#1a1612")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = "var(--ink)")
+                  }
+                  onClick={() => setSelectedProduct(product)}
+                >
+                  <div
+                    className="img-overlay"
+                    style={{ height: "220px", borderRadius: "2px" }}
+                  >
+                    <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <Button
-                      onClick={() => setSelectedProduct(product)}
-                      className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white text-[#8C6A43] hover:bg-[#8C6A43] hover:text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      Lihat Detail
-                    </Button>
                   </div>
-                  <div className="p-6 bg-white flex-1 flex flex-col">
-                    <div className="mb-2">
-                      <Badge
-                        variant="secondary"
-                        className="bg-[#E6B980]/20 text-[#8C6A43]"
-                      >
-                        {product.category}
-                      </Badge>
-                    </div>
+                  <div>
+                    <span
+                      className="overline"
+                      style={{ color: "var(--accent-light)" }}
+                    >
+                      {product.category}
+                    </span>
                     <h3
-                      onClick={() => setSelectedProduct(product)}
-                      className="font-playfair text-xl text-[#8C6A43] mb-2 cursor-pointer"
+                      style={{
+                        fontFamily: "'DM Serif Display', serif",
+                        fontSize: "1.8rem",
+                        color: "var(--paper)",
+                        margin: "0.75rem 0 1rem",
+                        lineHeight: 1.1,
+                      }}
                     >
                       {product.name}
                     </h3>
-                    <p className="text-sm text-[#2d1810] opacity-75 mb-4 flex-1">
+                    <p
+                      style={{
+                        fontFamily: "'Instrument Serif', serif",
+                        fontSize: "0.95rem",
+                        color: "var(--rule)",
+                        lineHeight: 1.6,
+                        marginBottom: "1.5rem",
+                      }}
+                    >
                       {product.description}
                     </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[#8C6A43]">{product.price}</span>
-                      <ArrowRight
-                        onClick={() => setSelectedProduct(product)}
-                        className="h-5 w-5 text-[#8C6A43] group-hover:translate-x-1 transition-transform cursor-pointer"
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "'DM Serif Display', serif",
+                          fontSize: "1.2rem",
+                          color: "var(--accent-light)",
+                        }}
+                      >
+                        {product.price}
+                      </span>
+                      <ArrowUpRight
+                        size={20}
+                        style={{ color: "var(--accent-light)" }}
                       />
                     </div>
                   </div>
-                </Card>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Subscription Plans */}
-      <section id="subscription" className="py-24 bg-[#FFF9F3]">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+        {/* ── SUBSCRIPTION ── */}
+        <section
+          id="subscription"
+          style={{ padding: "6rem 0", background: "var(--paper-warm)" }}
+        >
+          <div
+            style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
           >
-            <h2 className="font-playfair text-4xl md:text-5xl text-[#8C6A43] mb-4">
-              Paket Langganan
-            </h2>
-            <p className="text-[#2d1810] opacity-75 max-w-2xl mx-auto">
-              Hemat waktu dan biaya dengan berlangganan canang untuk kebutuhan
-              harian Anda
-            </p>
-          </motion.div>
+            <div
+              style={{
+                marginBottom: "3rem",
+                paddingBottom: "1.5rem",
+                borderBottom: "1.5px solid var(--rule)",
+              }}
+            >
+              <span className="section-num">§ 04</span>
+              <h2 className="display-md" style={{ marginTop: "0.5rem" }}>
+                Paket{" "}
+                <em style={{ fontStyle: "italic", color: "var(--accent)" }}>
+                  Langganan
+                </em>
+              </h2>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                name: "Harian",
-                price: "Rp 5.000",
-                period: "/hari",
-                features: [
-                  "1 set canang sari",
-                  "Bunga segar setiap hari",
-                  "Pengiriman pagi hari",
-                  "Fleksibel berhenti kapan saja",
-                ],
-              },
-              {
-                name: "Mingguan",
-                price: "Rp 30.000",
-                period: "/minggu",
-                popular: true,
-                features: [
-                  "7 set canang sari",
-                  "Hemat Rp 5.000",
-                  "Pengiriman 2x seminggu",
-                  "Prioritas pengiriman",
-                ],
-              },
-              {
-                name: "Bulanan",
-                price: "Rp 100.000",
-                period: "/bulan",
-                features: [
-                  "30 set canang sari",
-                  "Hemat Rp 50.000",
-                  "Gratis ongkir",
-                  "Bonus banten hari raya",
-                ],
-              },
-            ].map((plan, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card
-                  className={`p-8 rounded-2xl ${
-                    plan.popular
-                      ? "border-2 border-[#8C6A43] shadow-2xl bg-gradient-to-b from-[#E6B980]/10 to-white"
-                      : "border-[#D8C49A] bg-white"
-                  } hover:shadow-xl transition-all duration-300 relative`}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  name: "Harian",
+                  price: "Rp 5.000",
+                  period: "/ hari",
+                  features: [
+                    "1 set canang sari",
+                    "Bunga segar setiap hari",
+                    "Pengiriman pagi hari",
+                    "Fleksibel berhenti kapan saja",
+                  ],
+                  popular: false,
+                },
+                {
+                  name: "Mingguan",
+                  price: "Rp 30.000",
+                  period: "/ minggu",
+                  features: [
+                    "7 set canang sari",
+                    "Hemat Rp 5.000",
+                    "Pengiriman 2x seminggu",
+                    "Prioritas pengiriman",
+                  ],
+                  popular: true,
+                },
+                {
+                  name: "Bulanan",
+                  price: "Rp 100.000",
+                  period: "/ bulan",
+                  features: [
+                    "30 set canang sari",
+                    "Hemat Rp 50.000",
+                    "Gratis ongkir",
+                    "Bonus banten hari raya",
+                  ],
+                  popular: false,
+                },
+              ].map((plan, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  style={{
+                    padding: "3rem 2.5rem",
+                    background: plan.popular ? "var(--ink)" : "var(--white)",
+                    border: "1.5px solid var(--rule)",
+                    borderRight: index < 2 ? "none" : "1.5px solid var(--rule)",
+                    position: "relative",
+                  }}
                 >
                   {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <Badge className="bg-[#8C6A43] text-white px-4 py-1">
-                        Paling Populer
-                      </Badge>
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "-1px",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        background: "var(--accent)",
+                        padding: "0.3rem 1.2rem",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "'Syne', sans-serif",
+                          fontSize: "0.6rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.15em",
+                          textTransform: "uppercase",
+                          color: "var(--white)",
+                        }}
+                      >
+                        Populer
+                      </span>
                     </div>
                   )}
-                  <h3 className="font-playfair text-2xl text-[#8C6A43] mb-2 text-center">
+
+                  <h3
+                    style={{
+                      fontFamily: "'Syne', sans-serif",
+                      fontSize: "0.7rem",
+                      fontWeight: 800,
+                      letterSpacing: "0.2em",
+                      textTransform: "uppercase",
+                      color: plan.popular ? "var(--rule)" : "var(--ink-muted)",
+                      marginBottom: "1.5rem",
+                    }}
+                  >
                     {plan.name}
                   </h3>
-                  <div className="text-center mb-6">
-                    <span className="text-4xl text-[#8C6A43]">
+
+                  <div style={{ marginBottom: "2rem" }}>
+                    <span
+                      style={{
+                        fontFamily: "'DM Serif Display', serif",
+                        fontSize: "2.8rem",
+                        color: plan.popular ? "var(--paper)" : "var(--ink)",
+                        lineHeight: 1,
+                      }}
+                    >
                       {plan.price}
                     </span>
-                    <span className="text-[#2d1810] opacity-60">
+                    <span
+                      style={{
+                        fontFamily: "'Syne', sans-serif",
+                        fontSize: "0.75rem",
+                        color: plan.popular
+                          ? "var(--rule)"
+                          : "var(--ink-muted)",
+                        marginLeft: "0.5rem",
+                      }}
+                    >
                       {plan.period}
                     </span>
                   </div>
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-start gap-2 text-[#2d1810] opacity-75"
-                      >
-                        <span className="text-[#8C6A43] mt-1">✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    onClick={() => {
-                      const message = `Halo, saya tertarik dengan Paket Langganan ${plan.name} (${plan.price}${plan.period}). Mohon informasi lebih lanjut.`;
-                      window.open(
-                        `https://wa.me/6282340202905?text=${encodeURIComponent(
-                          message
-                        )}`,
-                        "_blank"
-                      );
+
+                  <div
+                    style={{
+                      borderTop: `1px solid ${plan.popular ? "rgba(200,184,154,0.3)" : "var(--rule)"}`,
+                      paddingTop: "1.5rem",
+                      marginBottom: "2rem",
                     }}
-                    className={`w-full rounded-full ${
-                      plan.popular
-                        ? "bg-[#8C6A43] hover:bg-[#6d5335] text-white"
-                        : "bg-white border-2 border-[#8C6A43] text-[#8C6A43] hover:bg-[#8C6A43] hover:text-white"
-                    }`}
+                  >
+                    {plan.features.map((feature, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          display: "flex",
+                          gap: "0.75rem",
+                          marginBottom: "0.75rem",
+                          fontFamily: "'Syne', sans-serif",
+                          fontSize: "0.82rem",
+                          color: plan.popular
+                            ? "var(--paper-warm)"
+                            : "var(--ink-muted)",
+                        }}
+                      >
+                        <span style={{ color: "var(--accent)", flexShrink: 0 }}>
+                          —
+                        </span>
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() =>
+                      whatsappOrder(
+                        `Halo, saya tertarik dengan Paket Langganan ${plan.name} (${plan.price}${plan.period}). Mohon informasi lebih lanjut.`,
+                      )
+                    }
+                    style={{
+                      width: "100%",
+                      fontFamily: "'Syne', sans-serif",
+                      fontWeight: 700,
+                      fontSize: "0.65rem",
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      padding: "0.85rem",
+                      border: `2px solid ${plan.popular ? "var(--accent)" : "var(--ink)"}`,
+                      background: plan.popular
+                        ? "var(--accent)"
+                        : "transparent",
+                      color: plan.popular ? "var(--white)" : "var(--ink)",
+                      cursor: "pointer",
+                      transition: "all 0.2s",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (plan.popular) {
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.color = "var(--accent)";
+                      } else {
+                        e.currentTarget.style.background = "var(--ink)";
+                        e.currentTarget.style.color = "var(--paper)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (plan.popular) {
+                        e.currentTarget.style.background = "var(--accent)";
+                        e.currentTarget.style.color = "var(--white)";
+                      } else {
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.color = "var(--ink)";
+                      }
+                    }}
                   >
                     Mulai Langganan
-                  </Button>
-                </Card>
-              </motion.div>
-            ))}
+                  </button>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Cultural Education Carousel */}
-      <section id="education" className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+        {/* ── EDUCATION ── */}
+        <section
+          id="education"
+          style={{ padding: "6rem 0", background: "var(--white)" }}
+        >
+          <div
+            style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
           >
-            <h2 className="font-playfair text-4xl md:text-5xl text-[#8C6A43] mb-4">
-              Edukasi Budaya
-            </h2>
-            <p className="text-[#2d1810] opacity-75 max-w-2xl mx-auto">
-              Memahami makna dan filosofi di balik setiap upakara
-            </p>
-          </motion.div>
+            <div
+              style={{
+                marginBottom: "3rem",
+                paddingBottom: "1.5rem",
+                borderBottom: "1.5px solid var(--rule)",
+              }}
+            >
+              <span className="section-num">§ 05</span>
+              <h2 className="display-md" style={{ marginTop: "0.5rem" }}>
+                Edukasi{" "}
+                <em style={{ fontStyle: "italic", color: "var(--accent)" }}>
+                  Budaya
+                </em>
+              </h2>
+            </div>
 
-          <div className="max-w-4xl mx-auto">
-            <Carousel className="w-full">
-              <CarouselContent>
-                {educationalContent.map((content, index) => (
-                  <CarouselItem key={index}>
-                    <Card className="p-8 md:p-12 bg-gradient-to-br from-[#FFF9F3] to-white border-[#D8C49A] rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <BookOpen className="h-8 w-8 text-[#8C6A43]" />
-                        <h3 className="font-playfair text-3xl text-[#8C6A43]">
+            <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {educationalContent.map((content, index) => (
+                    <CarouselItem key={index}>
+                      <div
+                        style={{
+                          border: "1.5px solid var(--rule)",
+                          padding: "3rem 4rem",
+                          background: "var(--paper)",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "1rem",
+                            marginBottom: "2rem",
+                            paddingBottom: "1.5rem",
+                            borderBottom: "1.5px solid var(--rule)",
+                          }}
+                        >
+                          <BookOpen
+                            size={20}
+                            style={{ color: "var(--accent)" }}
+                          />
+                          <span className="overline">Makna & Filosofi</span>
+                        </div>
+                        <h3
+                          style={{
+                            fontFamily: "'DM Serif Display', serif",
+                            fontSize: "2.8rem",
+                            color: "var(--ink)",
+                            marginBottom: "1.5rem",
+                            lineHeight: 1,
+                          }}
+                        >
                           {content.title}
                         </h3>
-                      </div>
-                      <p className="text-[#2d1810] opacity-75 mb-6 leading-relaxed text-lg">
-                        {content.description}
-                      </p>
-                      <div className="bg-[#E6B980]/10 p-6 rounded-xl border-l-4 border-[#8C6A43]">
-                        <p className="text-[#2d1810] italic">
-                          💫 <strong>Filosofi:</strong> {content.meaning}
+                        <p
+                          className="body-serif drop-cap"
+                          style={{ marginBottom: "2rem" }}
+                        >
+                          {content.description}
                         </p>
+                        <div
+                          style={{
+                            borderLeft: "4px solid var(--accent)",
+                            paddingLeft: "1.5rem",
+                            background: "var(--paper-warm)",
+                            padding: "1.25rem 1.25rem 1.25rem 1.75rem",
+                            borderLeft: "4px solid var(--accent)",
+                          }}
+                        >
+                          <p
+                            style={{
+                              fontFamily: "'Instrument Serif', serif",
+                              fontSize: "1.05rem",
+                              fontStyle: "italic",
+                              color: "var(--ink-muted)",
+                            }}
+                          >
+                            {content.meaning}
+                          </p>
+                        </div>
                       </div>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-0 -translate-x-12" />
-              <CarouselNext className="right-0 translate-x-12" />
-            </Carousel>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-0 -translate-x-12" />
+                <CarouselNext className="right-0 translate-x-12" />
+              </Carousel>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Testimonials */}
-      <section id="testimonials" className="py-24 bg-[#FFF9F3]">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+        {/* ── TESTIMONIALS ── */}
+        <section
+          id="testimonials"
+          style={{ padding: "6rem 0", background: "var(--paper)" }}
+        >
+          <div
+            style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
           >
-            <h2 className="font-playfair text-4xl md:text-5xl text-[#8C6A43] mb-4">
-              Testimoni
-            </h2>
-            <p className="text-[#2d1810] opacity-75 max-w-2xl mx-auto">
-              Kepercayaan dan kepuasan pelanggan adalah prioritas kami
-            </p>
-          </motion.div>
+            <div
+              style={{
+                marginBottom: "3rem",
+                paddingBottom: "1.5rem",
+                borderBottom: "1.5px solid var(--rule)",
+              }}
+            >
+              <span className="section-num">§ 06</span>
+              <h2 className="display-md" style={{ marginTop: "0.5rem" }}>
+                Suara{" "}
+                <em style={{ fontStyle: "italic", color: "var(--accent)" }}>
+                  Pelanggan
+                </em>
+              </h2>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="p-8 bg-white border-[#D8C49A] rounded-2xl hover:shadow-xl transition-all duration-300 h-full">
-                  <div className="flex items-center gap-1 mb-4">
+            <div
+              className="grid grid-cols-1 md:grid-cols-3"
+              style={{
+                gap: "0",
+              }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  style={{
+                    padding: "2.5rem",
+                    borderRight: index < 2 ? "1.5px solid var(--rule)" : "none",
+                    borderTop: "1.5px solid var(--rule)",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "3px",
+                      marginBottom: "1.5rem",
+                    }}
+                  >
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
+                      <span
                         key={i}
-                        className="h-5 w-5 fill-[#E6B980] text-[#E6B980]"
-                      />
+                        style={{ color: "var(--accent)", fontSize: "0.9rem" }}
+                      >
+                        ★
+                      </span>
                     ))}
                   </div>
-                  <p className="text-[#2d1810] opacity-75 mb-6 italic leading-relaxed">
+                  <p
+                    style={{
+                      fontFamily: "'Instrument Serif', serif",
+                      fontSize: "1.1rem",
+                      fontStyle: "italic",
+                      color: "var(--ink)",
+                      lineHeight: 1.7,
+                      marginBottom: "2rem",
+                    }}
+                  >
                     "{testimonial.comment}"
                   </p>
-                  <div className="flex items-center justify-between pt-4 border-t border-[#D8C49A]">
+                  <div
+                    style={{
+                      paddingTop: "1.25rem",
+                      borderTop: "1.5px solid var(--rule)",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-end",
+                    }}
+                  >
                     <div>
-                      <p className="text-[#8C6A43]">{testimonial.name}</p>
-                      <p className="text-sm text-[#2d1810] opacity-60">
-                        {testimonial.location}
+                      <p
+                        style={{
+                          fontFamily: "'Syne', sans-serif",
+                          fontWeight: 700,
+                          fontSize: "0.85rem",
+                          color: "var(--ink)",
+                          marginBottom: "0.2rem",
+                        }}
+                      >
+                        {testimonial.name}
                       </p>
+                      <p className="caption">{testimonial.location}</p>
                     </div>
-                    <Badge
-                      className="bg-[#8C6A43]/10 text-[#8C6A43] border-[#8C6A43]"
-                      variant="outline"
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.4rem",
+                      }}
                     >
-                      <Users className="h-3 w-3 mr-1" />
-                      Verified
-                    </Badge>
+                      <Users size={12} style={{ color: "var(--accent)" }} />
+                      <span className="overline">Verified</span>
+                    </div>
                   </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Join Us CTA */}
-      <section
-        id="join"
-        className="py-24 bg-gradient-to-br from-[#8C6A43] to-[#6d5335] text-white"
-      >
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h2 className="font-playfair text-4xl md:text-5xl mb-6">
-              Bergabung Sebagai Mitra Pengrajin
-            </h2>
-            <p className="text-lg mb-8 opacity-90 leading-relaxed">
-              Apakah Anda seorang pengrajin upakara? Bergabunglah dengan kami
-              untuk menjangkau lebih banyak umat yang membutuhkan karya tangan
-              Anda. Mari bersama melestarikan tradisi sambil memberdayakan
-              ekonomi lokal.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => {
-                  const message =
-                    "Halo, saya tertarik untuk bergabung sebagai mitra pengrajin Tri Upakara. Mohon informasi lebih lanjut.";
-                  window.open(
-                    `https://wa.me/6282340202905?text=${encodeURIComponent(
-                      message
-                    )}`,
-                    "_blank"
-                  );
-                }}
-                className="bg-white text-[#8C6A43] hover:bg-[#FFF9F3] px-8 py-6 rounded-full text-lg"
-              >
-                Daftar Sekarang
-              </Button>
+                </motion.div>
+              ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <Footer />
-    </div>
+        {/* ── JOIN CTA ── */}
+        <section
+          id="join"
+          className="py-24 bg-[var(--paper-warm)] border-y border-neutral-200"
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+              {/* Left */}
+              <div>
+                <span className="section-num">§ 07</span>
+                <h2 className="mt-2 font-serif text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-tight text-[var(--ink)]">
+                  Bergabung
+                  <br />
+                  Bersama
+                  <br />
+                  <em className="italic text-[var(--accent)]">Kami</em>
+                </h2>
+              </div>
+
+              {/* Right */}
+              <div>
+                <p className="body-serif mb-4 text-sm md:text-base">
+                  Apakah Anda seorang pengrajin upakara? Bergabunglah dengan
+                  kami untuk menjangkau lebih banyak umat yang membutuhkan karya
+                  tangan Anda.
+                </p>
+
+                <p className="body-serif mb-10 text-sm md:text-base">
+                  Mari bersama melestarikan tradisi sambil memberdayakan ekonomi
+                  lokal Bali yang kita cintai.
+                </p>
+
+                <button
+                  onClick={() =>
+                    whatsappOrder(
+                      "Halo, saya tertarik untuk bergabung sebagai mitra pengrajin Tri Upakara. Mohon informasi lebih lanjut.",
+                    )
+                  }
+                  className="
+            btn-accent
+            text-xs tracking-widest
+            px-6 py-3
+            transition-all duration-200
+            hover:opacity-90
+          "
+                >
+                  Daftar Sekarang →
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    </>
   );
 }
 

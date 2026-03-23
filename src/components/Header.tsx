@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "./ui/button";
-import { Menu, X, Flower2 } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import LogoTriUpakara from "../assets/img/logo-triupakara.png";
 
 export function Header() {
@@ -23,121 +22,279 @@ export function Header() {
     }
   };
 
+  const navLinks = [
+    { label: "Keunggulan", id: "why-choose" },
+    { label: "Mitra Kami", id: "artisans" },
+    { label: "Produk", id: "products" },
+    { label: "Paket", id: "subscription" },
+    { label: "Edukasi", id: "education" },
+  ];
+
+  const headerBg = isScrolled
+    ? "bg-[rgba(245,240,232,0.97)] backdrop-blur-md border-b border-neutral-300"
+    : "bg-[rgba(245,240,232,0.97)] md:bg-transparent md:border-transparent";
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-transparent"
-      }`}
+      className={`
+    fixed top-0 left-0 right-0 z-50
+    transition-all duration-300
+    ${
+      isScrolled
+        ? "bg-[rgba(245,240,232,0.97)] backdrop-blur-md border-b border-neutral-300"
+        : "bg-[rgba(245,240,232,0.97)] md:bg-transparent md:border-transparent"
+    }
+  `}
     >
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+      {/* Top thin rule — only visible when not scrolled */}
+      {!isScrolled && (
+        <div
+          style={{
+            height: "2px",
+            background:
+              "linear-gradient(90deg, transparent, #b85c2a 30%, #b85c2a 70%, transparent)",
+            opacity: 0.4,
+          }}
+        />
+      )}
+
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "72px",
+          }}
+        >
           {/* Logo */}
           <div
-            className="flex items-center gap-2 cursor-pointer"
             onClick={() => scrollToSection("hero")}
+            style={{
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.75rem",
+            }}
           >
-            {/* <Flower2 className="h-8 w-8 text-[#8C6A43]" />
-            <span className="font-playfair text-xl text-[#8C6A43]">
-              Tri Upakara
-            </span> */}
-            <img src={LogoTriUpakara} width={80} alt="" />
+            <img src={LogoTriUpakara} width={72} alt="Tri Upakara" />
+            {/* Vertical rule separator */}
+            <div
+              style={{
+                width: "1px",
+                height: "28px",
+                background: "#c8b89a",
+                margin: "0 0.25rem",
+              }}
+            />
+            <div>
+              <p
+                style={{
+                  fontFamily: "'Syne', sans-serif",
+                  fontSize: "0.55rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.25em",
+                  textTransform: "uppercase",
+                  color: "#b85c2a",
+                  lineHeight: 1,
+                  marginBottom: "0.2rem",
+                }}
+              >
+                Platform
+              </p>
+              <p
+                style={{
+                  fontFamily: "'DM Serif Display', serif",
+                  fontSize: "0.95rem",
+                  color: "#0f0d0b",
+                  lineHeight: 1,
+                  letterSpacing: "0.02em",
+                }}
+              >
+                Upakara Digital
+              </p>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection("why-choose")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors"
-            >
-              Keunggulan
-            </button>
-            <button
-              onClick={() => scrollToSection("artisans")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors"
-            >
-              Mitra Kami
-            </button>
+          <nav
+            className="hidden md:flex"
+            style={{ alignItems: "center", gap: "0" }}
+          >
+            {navLinks.map((link, index) => (
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                style={{
+                  fontFamily: "'Syne', sans-serif",
+                  fontSize: "0.65rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "#5a4e42",
+                  background: "none",
+                  border: "none",
+                  padding: "0.5rem 1.25rem",
+                  cursor: "pointer",
+                  borderRight:
+                    index < navLinks.length - 1 ? "1px solid #c8b89a" : "none",
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#b85c2a")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#5a4e42")}
+              >
+                {link.label}
+              </button>
+            ))}
+
+            {/* CTA Button */}
             <button
               onClick={() => scrollToSection("products")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors"
-            >
-              Produk
-            </button>
-            <button
-              onClick={() => scrollToSection("subscription")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors"
-            >
-              Paket
-            </button>
-            <button
-              onClick={() => scrollToSection("education")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors"
-            >
-              Edukasi
-            </button>
-            <Button
-              onClick={() => scrollToSection("hero")}
-              className="bg-[#8C6A43] hover:bg-[#6d5335] text-white rounded-full"
+              style={{
+                fontFamily: "'Syne', sans-serif",
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                padding: "0.6rem 1.5rem",
+                marginLeft: "1.5rem",
+                border: "2px solid #b85c2a",
+                background: "#b85c2a",
+                color: "#fdfaf6",
+                cursor: "pointer",
+                transition: "all 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = "#b85c2a";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#b85c2a";
+                e.currentTarget.style.color = "#fdfaf6";
+              }}
             >
               Pesan Sekarang
-            </Button>
+            </button>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Hamburger */}
           <button
-            className="md:hidden text-[#8C6A43]"
+            className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "#0f0d0b",
+              padding: "0.25rem",
+            }}
           >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 flex flex-col gap-4 border-t border-[#D8C49A] pt-4">
-            <button
-              onClick={() => scrollToSection("why-choose")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors text-left"
+          <div
+            className="md:hidden"
+            style={{
+              borderTop: "1.5px solid #c8b89a",
+              paddingTop: "1.5rem",
+              paddingBottom: "1.5rem",
+            }}
+          >
+            {/* Issue-style header */}
+            <p
+              style={{
+                fontFamily: "'Syne', sans-serif",
+                fontSize: "0.55rem",
+                fontWeight: 700,
+                letterSpacing: "0.25em",
+                textTransform: "uppercase",
+                color: "#b85c2a",
+                marginBottom: "1rem",
+              }}
             >
-              Keunggulan
-            </button>
-            <button
-              onClick={() => scrollToSection("artisans")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors text-left"
-            >
-              Mitra Kami
-            </button>
+              Navigasi
+            </p>
+
+            <nav style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+              {navLinks.map((link, index) => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  style={{
+                    fontFamily: "'DM Serif Display', serif",
+                    fontSize: "1.5rem",
+                    color: "#0f0d0b",
+                    background: "none",
+                    border: "none",
+                    borderBottom: "1px solid #ede7d9",
+                    padding: "0.85rem 0",
+                    textAlign: "left",
+                    cursor: "pointer",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    transition: "color 0.2s",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#b85c2a")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "#0f0d0b")
+                  }
+                >
+                  {link.label}
+                  <span
+                    style={{
+                      fontFamily: "'Syne', sans-serif",
+                      fontSize: "0.6rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      color: "#c8b89a",
+                    }}
+                  >
+                    0{index + 1}
+                  </span>
+                </button>
+              ))}
+            </nav>
+
             <button
               onClick={() => scrollToSection("products")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors text-left"
+              style={{
+                marginTop: "1.5rem",
+                width: "100%",
+                fontFamily: "'Syne', sans-serif",
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                padding: "0.85rem",
+                border: "2px solid #b85c2a",
+                background: "#b85c2a",
+                color: "#fdfaf6",
+                cursor: "pointer",
+              }}
             >
-              Produk
+              Pesan Sekarang →
             </button>
-            <button
-              onClick={() => scrollToSection("subscription")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors text-left"
-            >
-              Paket
-            </button>
-            <button
-              onClick={() => scrollToSection("education")}
-              className="text-[#2d1810] hover:text-[#8C6A43] transition-colors text-left"
-            >
-              Edukasi
-            </button>
-            <Button
-              onClick={() => scrollToSection("hero")}
-              className="bg-[#8C6A43] hover:bg-[#6d5335] text-white rounded-full w-full"
-            >
-              Pesan Sekarang
-            </Button>
-          </nav>
+          </div>
         )}
       </div>
+
+      {/* Bottom rule line */}
+      {isScrolled && (
+        <div
+          style={{
+            height: "1px",
+            background:
+              "linear-gradient(90deg, transparent, #c8b89a 20%, #c8b89a 80%, transparent)",
+            opacity: 0.5,
+          }}
+        />
+      )}
     </header>
   );
 }
