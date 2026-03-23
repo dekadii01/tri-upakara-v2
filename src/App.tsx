@@ -1218,8 +1218,22 @@ function App() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-0 -translate-x-12" />
-                <CarouselNext className="right-0 translate-x-12" />
+                {/* Navigation */}
+                <div className="flex justify-center gap-4 mt-6 md:mt-0 md:block">
+                  <CarouselPrevious
+                    className="
+          static
+          md:absolute md:left-0 md:-translate-x-12 md:top-1/2 md:-translate-y-1/2
+        "
+                  />
+
+                  <CarouselNext
+                    className="
+          static
+          md:absolute md:right-0 md:translate-x-12 md:top-1/2 md:-translate-y-1/2
+        "
+                  />
+                </div>
               </Carousel>
             </div>
           </div>
