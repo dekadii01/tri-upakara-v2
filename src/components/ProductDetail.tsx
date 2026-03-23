@@ -134,9 +134,8 @@ export function ProductDetail({ product, onBack }: ProductDetailProps) {
 
         {/* ── Main Grid ── */}
         <div
+          className="grid grid-cols-1 md:grid-cols-2"
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
             gap: "0",
             border: "1.5px solid #c8b89a",
           }}
